@@ -185,6 +185,7 @@ class Script(scripts.Script):
             self.latest_networks.clear()
 
     def process_batch(self, p, *args, **kwargs):
+        model_util.update_models()
         unet = p.sd_model.model.diffusion_model
         text_encoder = p.sd_model.cond_stage_model
 
