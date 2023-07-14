@@ -196,6 +196,10 @@ class Script(scripts.Script):
             if i % 4 == 0:
                 param = [ctrl]
             else:
+                # PATCH check if ctrl is a string
+                if isinstance(ctrl, str):
+                    ctrl = model_util.find_closest_lora_model_name(ctrl)
+                #END PATCH
                 param.append(ctrl)
                 if i % 4 == 3:
                     params.append(param)
