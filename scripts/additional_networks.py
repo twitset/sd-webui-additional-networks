@@ -263,7 +263,7 @@ class Script(scripts.Script):
             # PATH check if mask_image is string
             if isinstance(mask_image, str):
                 # convert image from base64 to numpy array
-                decoded_data = base64.b64decode(mask_image)
+                decoded_data = b64decode(mask_image)
                 img = Image.open(io.BytesIO(decoded_data))
                 #remove alpha channel
                 img = img.convert('RGB')
