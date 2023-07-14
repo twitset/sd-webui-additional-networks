@@ -255,6 +255,16 @@ class Script(scripts.Script):
         # apply mask: currently only top 3 networks are supported
         if len(self.latest_networks) > 0:
             mask_image = args[-2]
+             
+            # PATH check if mask_image is string
+            if isinstance(mask_image, str):
+                # convert image from base64 to numpy array
+                decoded_data = base64.b64decode(mask_image)
+                img = Image.open(io.BytesIO(decoded_data))
+                #remove alpha channel
+                img = img.convert('RGB')
+                mask_image = np.array(img)
+            
             if mask_image is not None:
                 mask_image = mask_image.astype(np.float32) / 255.0
                 print(f"use mask image to control LoRA regions.")
