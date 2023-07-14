@@ -12,7 +12,7 @@ from modules.ui_components import ToolButton, FormRow
 
 from scripts import addnet_xyz_grid_support, lora_compvis, model_util, metadata_editor
 from scripts.model_util import lora_models, MAX_MODEL_COUNT
-
+from base64 import b64decode
 
 memo_symbol = "\U0001F4DD"  # 📝
 addnet_paste_params = {"txt2img": [], "img2img": []}
