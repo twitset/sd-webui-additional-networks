@@ -267,9 +267,11 @@ class Script(scripts.Script):
                 # convert image from base64 to numpy array
                 decoded_data = b64decode(mask_image)
                 img = Image.open(io.BytesIO(decoded_data))
-                #remove alpha channel
-                img = img.convert('RGB')
-                mask_image = np.array(img)
+                #remove alpha channel if present
+                if img.mode == 'RGBA':
+                    img = img.convert('RGB')
+
+                mask_image = np.array(img, dtype=np.uint8)
             
             if mask_image is not None:
                 mask_image = mask_image.astype(np.float32) / 255.0
